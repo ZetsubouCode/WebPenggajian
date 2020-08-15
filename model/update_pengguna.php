@@ -1,7 +1,7 @@
 <?php
 	 include "../config/config.php";
 	 if ($_FILES['imagefile']['type'] == "image/jpeg"){
-					$ori_src="D:/project/project1/assets/foto/imgori/".strtolower( str_replace(' ','_',$_FILES['imagefile']['name']) );
+					$ori_src="../assets/foto/imgori/".strtolower( str_replace(' ','_',$_FILES['imagefile']['name']) );
 					if(move_uploaded_file ($_FILES['imagefile']['tmp_name'],$ori_src))
 					{
 						chmod("$ori_src",0777);
@@ -10,7 +10,7 @@
 						exit;
 					}
 
-					$thumb_src="D:/project/project1/assets/foto/".strtolower( str_replace(' ','_',$_FILES['imagefile']['name']) );
+					$thumb_src="../assets/foto/".strtolower( str_replace(' ','_',$_FILES['imagefile']['name']) );
 					
 					$n_width = 150;
 					$n_height = 150;

@@ -1,4 +1,6 @@
 <?php
+
+
 include "../config/config.php";
 $sql="DELETE FROM `t_jabatan` WHERE `id_jabatan` =
 '$_POST[nip]'";

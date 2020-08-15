@@ -62,7 +62,7 @@
                         CV.Archindo Media Karya
                    </h3> 
                    <span>
-                    JL. Lili Kusumah No.451 Kota Banjar
+                   &nbsp;JL. Lili Kusumah No.451 Kota Banjar
                        
                    </span>
                 </td>

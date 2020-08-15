@@ -47,7 +47,6 @@
     <link href="assets/plugins/password-indicator/css/password-indicator.css" rel="stylesheet" />
     <script src="assets/plugins/password-indicator/js/password-indicator.js"></script>
     <script src="assets/plugins/parsley/dist/parsley.js"></script>
-    
     <script src="assets/plugins/morris/raphael.min.js"></script>
     <script src="assets/plugins/bootbox/bootbox.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.blockUI.js"></script>
@@ -72,6 +71,11 @@
     <script src="assets/js/form-plugins.min.js"></script>
     <script src="assets/js/apps.min.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script type="text/javascript">
+    function dropdownz(nip){
+    
+    }
+    </script>
     <script>
         $(document).ready(function() {
             App.init();

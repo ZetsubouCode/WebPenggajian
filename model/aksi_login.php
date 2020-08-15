@@ -8,6 +8,11 @@
 	($data,ENT_QUOTES))));
 	 return $filter_sql;
 	}
+	
+if($_POST['username']!="" && $_POST['password']!=""){
+	if(isset($_SESSION["wrong"])){
+	unset($_SESSION["wrong"]);
+	}
 	$username = antiinjection($_POST['username']);
 	$password = antiinjection(md5($_POST['password']));
 	$sql="SELECT * FROM view_pengguna WHERE username='$username' AND password='$password' ";
@@ -27,6 +32,12 @@
 	}
 	// Apabila login gagal
 	else{
+	 
 	 echo "<script>alert('Login Gagal, username atau password tidak cocok'); window.location = '../index.php'</script>";
 	}
+} else {
+	$_SESSION["wrong"]="Masukkan data lengkap untuk login!";
+	$msg=$_SESSION["wrong"];
+	echo "<script>alert('$msg'); window.location = '../index.php'</script>";
+}
 ?>

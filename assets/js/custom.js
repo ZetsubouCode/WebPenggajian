@@ -1,5 +1,4 @@
 /* global moment */
-
 $(document).ready(function () {
     
     
@@ -23,8 +22,9 @@ function getTime() {
 }
 function konfirmasi(nip,halaman,action){
     var host = window.location.host;
-    $BASE_URL = 'http://'+host+'/';  
+    $BASE_URL = host+'/'; 
     bootbox.confirm("Yakin Akan Menghapus ?", function(result) {
+
         if (result) {
             $.ajax({
                 url : $BASE_URL+action+nip,
@@ -41,4 +41,5 @@ function konfirmasi(nip,halaman,action){
             });             
         }
     });
+  
 }

@@ -2,7 +2,7 @@
     if ($_SESSION['level']=='admin'){
  ?>
 <ol class="breadcrumb hidden-print pull-right">
-	<li><a href="javascript:;">Transaksi</a></li>
+	<li><a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI'];?>">Transaksi</a></li>
 	<li class="active">Slip</li>
 </ol>
 <!-- end breadcrumb -->

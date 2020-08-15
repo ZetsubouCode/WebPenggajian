@@ -2,8 +2,9 @@
     if ($_SESSION['level']=='user'){
  ?>
 <ol class="breadcrumb pull-right">
-    <li><a href="javascript:;">Home</a></li>
-    <li><a href="javascript:;">Admin</a></li>
+<?php $user=$_SESSION['username'];?>
+    <li><a href="<?php echo "http://".$_SERVER['SERVER_NAME'].substr($_SERVER['REQUEST_URI'],0,strlen($_SERVER['REQUEST_URI'])-(20+strlen($user)));?>">Home</a></li>
+    <li><a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI'];?>">Admin</a></li>
     <li class="active">Profil</li>
 </ol>
 <h1 class="page-header">Profil</h1>

@@ -3,8 +3,8 @@
  ?>
 <!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Admin</a></li>
+				<li><a href="<?php echo "http://".$_SERVER['SERVER_NAME'].substr($_SERVER['REQUEST_URI'],0,strlen($_SERVER['REQUEST_URI'])-16);?>">Home</a></li>
+				<li><a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI'];?>">Admin</a></li>
 				<li class="active">Data Pengguna</li>
 			</ol>
 			<!-- end breadcrumb -->

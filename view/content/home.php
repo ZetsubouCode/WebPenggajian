@@ -11,7 +11,7 @@
 
  ?>
 <ol class="breadcrumb pull-right">
-	<li><a href="javascript:;">Home</a></li>
+	<li><a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI'];?>">Home</a></li>
 	<li class="active">Dashboard</li>    
 </ol>
 <h1 class="page-header">Dashboard <small>APP Penggajian</small></h1>
@@ -24,7 +24,7 @@
 				<p><?php echo $jumlah_gaji; ?> <small> / <?php echo $jumlah_karyawan; ?> ORANG</small></p>	
 			</div>
 			<div class="stats-link">
-				<a href="javascript:;"><i class="fa fa-arrow-circle-o-right"></i></a>
+				<a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];?>?p=data_gaji"><i class="fa fa-arrow-circle-o-right"></i></a>
 			</div>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 				<p><?php echo $jumlah_karyawan; ?> ORANG</p>	
 			</div>
 			<div class="stats-link">
-				<a href="javascript:;"> <i class="fa fa-arrow-circle-o-right"></i></a>
+				<a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];?>?p=data_pegawai"> <i class="fa fa-arrow-circle-o-right"></i></a>
 			</div>
 		</div>
 	</div>

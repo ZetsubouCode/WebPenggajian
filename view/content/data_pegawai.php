@@ -11,8 +11,8 @@ $(document).ready(function() {
  ?>
 <!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Master</a></li>
+				<li><a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'],0,strlen($_SERVER['REQUEST_URI'])-14);?>">Home</a></li>
+				<li><a href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];?>?p=data_pegawai">Master</a></li>
 				<li class="active">Data Pegawai</li>
 			</ol>
 			<!-- end breadcrumb -->
@@ -93,7 +93,7 @@ $(document).ready(function() {
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4"></label>
 									<div class="col-md-6 col-sm-6">
-										<button type="submit" class="btn btn-primary btn-sm">Submit</button> <button type="resset" class="btn btn-danger btn-sm">Resset</button>
+										<button type="submit" class="btn btn-primary btn-sm">Submit</button> <button type="reset" class="btn btn-danger btn-sm">Reset</button>
 									</div>
 								</div>
                             </form>

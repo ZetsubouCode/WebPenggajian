@@ -7,7 +7,7 @@
 	 if ($cek>0) {
 	 	?>
 	 	<script type="text/javascript">
-	 	alert('Gji pada bulan ini telah di input!');
+	 	alert('Gaji pada bulan ini telah di input!');
 	 	window.location.href="../index.php?p=data_gaji";
 	 	</script>
 	 	<?php

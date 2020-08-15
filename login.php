@@ -66,7 +66,7 @@
             <div class="right-content">
                 <!-- begin login-header -->
                 <div class="login-header">
-                    <div class="brand">
+                      <div class="brand">
                         <span class="logo"></span> Payroll System
                         <small> CV. WISNUDA</small>
                     </div>
@@ -75,6 +75,7 @@
                     </div>
                 </div>
                 <!-- end login-header -->
+
                 <!-- begin login-content -->
                 <div class="login-content">
                     <form action="model/aksi_login.php" method="POST" class="margin-bottom-0">

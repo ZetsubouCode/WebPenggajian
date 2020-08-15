@@ -34,7 +34,10 @@
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
-							<li><a href="">Edit Profile</a></li>
+							<?php $url=$_SERVER['REQUEST_URI'];
+								  $user=$_SESSION['username'];
+							?>
+							<li><a href="<?php echo "http://".$_SERVER['SERVER_NAME'].substr($url,0,strpos($url,"?"))."?p=profil&&username=$user";?>">Edit Profile</a></li>
 							<li class="divider"></li>
 							<li><a href="model/aksi_logout.php">Log Out</a></li>
 						</ul>
