@@ -27,7 +27,7 @@
                         <div class="panel-body panel-form">
                    <?php 
                       include "config/config.php";
-                      $sql="select s.id,no_penggajian,s.nip,nama_pegawai,nama_jabatan,tanggal_penggajian,bulan,tahun,gereja,yci from t_penggajian pg join t_tarif_staff s on (s.id=pg.slip_staff) join t_pegawai p on (p.nip=s.nip) join tb_jabatan j on (j.kode=p.id_jabatan) where pg.no_penggajian='$_GET[id_gaji]'";
+                      $sql="select s.id,s.nip,nama_pegawai,nama_jabatan,bulan,tahun,gereja,yci from t_tarif_staff s join t_pegawai p on (p.nip=s.nip) join tb_jabatan j on (j.kode=p.id_jabatan) where s.id='$_GET[id_gaji]'";
                       $tampil=mysql_query($sql);
                       while($data=mysql_fetch_array($tampil)){
                      ?>

@@ -62,7 +62,7 @@
                                              $sql = mysql_query("SELECT * FROM t_pegawai p join tb_jabatan j on(p.id_jabatan=j.kode) where kategori_jabatan='Staff' ORDER BY nip ASC");
                                                 if(mysql_num_rows($sql) != 0){
                                                     while($data = mysql_fetch_assoc($sql)){
-                                                        echo '<option value='.$data['nip'].'>'.$data['nip'].'</option>';
+                                                        echo '<option value='.$data['nip'].'>'.$data['nip'].' ['.$data['nama_pegawai'].']</option>';
                                                     }
                                              }
                                              ?>
@@ -134,7 +134,6 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Nama Jabatan</th>
-                                        <th>Tanggal Penggajian</th>
                                         <th>Bulan</th>
                                         <th>Tahun</th>
                                         <th>Kontribusi Gereja</th>
@@ -152,7 +151,7 @@
                                         $_SESSION['deleteTable']="tb_jabatan";
                                         $_SESSION['deleteUID']="kode";
                                         $_SESSION['action']=$action;
-                                            $sql=mysql_query("select no_penggajian,nama_pegawai,nama_jabatan,tanggal_penggajian,bulan,tahun,gereja,yci from t_penggajian pg join t_tarif_staff s on (s.id=pg.slip_staff) join t_pegawai p on (p.nip=s.nip) join tb_jabatan j on (j.kode=p.id_jabatan) where kategori_jabatan like 'Staff'");
+                                            $sql=mysql_query("select s.id,nama_pegawai,nama_jabatan,bulan,tahun,gereja,yci from t_tarif_staff s join t_pegawai p on (p.nip=s.nip) join tb_jabatan j on (j.kode=p.id_jabatan) where kategori_jabatan like 'Staff'");
                                             while($data=mysql_fetch_array($sql)){
                                                 $i++;
                                         ?>
@@ -160,14 +159,13 @@
                                                 <td><?php echo $i; ?></td>
                                                 <td><?php echo $data['nama_pegawai']; ?></td>
                                                 <td><?php echo $data['nama_jabatan']; ?></td>
-                                                <td><?php echo $data['tanggal_penggajian']; ?></td>
                                                 <td><?php echo $data['bulan']; ?></td>
                                                 <td><?php echo $data['tahun']; ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['gereja']); ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['yci']); ?></td>
                                                 <td align="center">
-                                                    <a class="btn btn-default btn-icon btn-sm" href="index.php?p=edit_jabatanstaf&&id_gaji=<?php echo $data['no_penggajian']; ?>"><i class="fa fa-expand"></i></a>
-                                                    <a class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#deletemodal" onclick="setUID('<?php echo $data['no_penggajian'];?>')"><i class="fa fa-times"></i></a>
+                                                    <a class="btn btn-default btn-icon btn-sm" href="index.php?p=edit_jabatanstaf&&id_gaji=<?php echo $data['id']; ?>"><i class="fa fa-expand"></i></a>
+                                                    <a class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#deletemodal" onclick="setUID('<?php echo $data['id'];?>')"><i class="fa fa-times"></i></a>
                                                     
                                                 </td>
                                             </tr>

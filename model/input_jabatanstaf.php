@@ -13,15 +13,14 @@
 			'$_POST[nip]',
 			'$_POST[kontribusi]',
 			'$_POST[yci]')";
-	$sqlsearch=mysql_query("SELECT id from t_tarif_staff where bulan = '$_POST[bulan]' AND tahun = '$_POST[tahun]' AND nip = '$_POST[nip]'");
-	$result=mysql_fetch_assoc($sqlsearch);
-	$sql2="INSERT INTO `t_penggajian`(
-		`tanggal_penggajian`,
-		`slip_staff`
-		)
-		VALUES (CURDATE(),
-		$result[id])";
+	$data=mysql_query("SELECT * from t_tarif_staff where bulan ='$_POST[bulan]' and tahun='$_POST[tahun]' and nip='$_POST[nip]'");
+	if(mysql_num_rows ( $data ) > 0){
+		echo "<script type='text/javascript'>alert('Data sudah ada!');
+		window.location.replace('../index.php?p=data_jabatanstaf');
+		</script>";
+	}else{
 	mysql_query($sql) or die("Gagal Menyimpan slip");
-	mysql_query($sql2) or die("Gagal Menyimpan");
 	header ("location:../index.php?p=data_jabatanstaf");
+	}
+	
 ?>

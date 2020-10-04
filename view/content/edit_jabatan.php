@@ -27,7 +27,7 @@
                         <div class="panel-body panel-form">
                    <?php 
                       include "config/config.php";
-                      $sql="select * from t_tarif_mentor where id_gaji='$_GET[id_jabatan]'";
+                      $sql="SELECT s.id,nama_jabatan,gaji,bonus,kunjungan,tutorial,lesson,evaluasi,inskeh,insfile from t_tarif_mentor s join tb_jabatan j on (j.kode=s.id_jabatan) where s.id='$_GET[id_jabatan]'";
                       $tampil=mysql_query($sql);
                       while($data=mysql_fetch_array($tampil)){
                      ?>
@@ -35,8 +35,8 @@
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4" >Nama Jabatan :</label>
 									<div class="col-md-6 col-sm-6">
-                                     <input type="hidden" name="id_gaji_lama" value="<?php echo $data['id_gaji'];?>">
-										<input class="form-control" type="text" name="id_gaji" value="<?php echo $data['id_gaji'];?>" readonly />
+                                     <input type="hidden" name="id_gaji_lama" value="<?php echo $data['id'];?>">
+										<input class="form-control" type="text" name="id_gaji" value="<?php echo $data['nama_jabatan'];?>" readonly />
 									</div>
 								</div>
                                 <div class="form-group">
@@ -78,13 +78,13 @@
                                         <div class="form-group">
                                     <label class="control-label col-md-4 col-sm-4">Insentif Kehadiran :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="number" name="inskeh" value="<?php echo $data['intkeh'];?>"  />
+                                        <input class="form-control" type="number" name="inskeh" value="<?php echo $data['inskeh'];?>"  />
                                       </div>
                                     </div>
                                         <div class="form-group">
                                     <label class="control-label col-md-4 col-sm-4">Insentif File Data :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="number" name="insfile" value="<?php echo $data['intfid'];?>" />
+                                        <input class="form-control" type="number" name="insfile" value="<?php echo $data['insfile'];?>" />
                                       </div>
                                     </div>
                                     

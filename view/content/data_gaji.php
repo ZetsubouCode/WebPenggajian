@@ -149,8 +149,6 @@
                                 <tbody>
                                   <?php 
                                           include "config/config.php";
-                                           $halaman = "index.php?p=data_gaji";
-                                            $action = "model/hapus_penggajian.php?";
                                           $i=0;
                                           $sql="SELECT * FROM `view_gaji_staff` ";
                                           $tampil=mysql_query($sql);
@@ -160,11 +158,11 @@
                                          ?>
                                           <tr>
                                             <td><?php echo $i; ?></td>
-                                            <td><?php echo date("d-F-Y", strtotime($data['Tanggal'])); ?></td>
-                                            <td><?php echo $data['Bulan'].' / '.$data['Tahun']; ?></td>
-                                            <td><?php echo $data['NIP']; ?></td>
-                                            <td><?php echo $data['Nama Pegawai']; ?></td>
-                                            <td align="right"><?php echo 'Rp. '.number_format($data['Kontribusi Gereja']+$data['Kontribusi YCI']) ?></td>
+                                            <td><?php echo date("d-F-Y", strtotime($data['tanggal_penggajian'])); ?></td>
+                                            <td><?php echo $data['bulan'].' / '.$data['tahun']; ?></td>
+                                            <td><?php echo $data['nip']; ?></td>
+                                            <td><?php echo $data['nama_pegawai']; ?></td>
+                                            <td align="right"><?php echo 'Rp. '.number_format($data['gereja']+$data['yci']) ?></td>
                                             <td>
                                                <a href='index.php?p=cetak&&no_penggajian=<?php echo $data['No']; ?>'class="btn btn-primary btn-icon btn-sm" title='Detail'><i class='glyphicon glyphicon-folder-open'></i></a>
                                             </td>

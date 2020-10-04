@@ -26,7 +26,8 @@
                         </div>
                         <div class="panel-body panel-form">
                             <form class="form-horizontal form-bordered" data-parsley-validate="true" name="data_pengguna" action="./model/input_jabatan.php" method="POST">
-								<div class="form-group">
+                                
+                                <div class="form-group">
 									<label class="control-label col-md-4 col-sm-4">Pos Pelayanan :</label>
                                     <div class="col-md-6 col-sm-6">
                                         <select name="id_gaji" data-live-search="true" data-style="btn-white" class="form-control selectpicker" >
@@ -148,25 +149,25 @@
                                         $_SESSION['deleteUID']="id_gaji";
                                         $_SESSION['action']=$action;
                                         $i=0;
-                                            $sql=mysql_query("select * from t_tarif_mentor");
-                                            while($data=mysql_fetch_array($sql)){
+                                        $sql=mysql_query("SELECT s.id,nama_jabatan,gaji,bonus,kunjungan,tutorial,lesson,evaluasi,inskeh,insfile from t_tarif_mentor s join tb_jabatan j on (j.kode=s.id_jabatan) where kategori_jabatan like 'Mentor'");
+                                        while($data=mysql_fetch_array($sql)){
                                                 $i++;
                                             
                                         ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td><?php echo $data['id_gaji']; ?></td>
+                                                <td><?php echo $data['nama_jabatan']; ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['gaji']); ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['bonus']); ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['kunjungan']); ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['tutorial']); ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['lesson']); ?></td>
                                                 <td><?php echo 'Rp.'.number_format($data['evaluasi']); ?></td>
-                                                <td><?php echo 'Rp.'.number_format($data['intkeh']); ?></td>
-                                                <td><?php echo 'Rp.'.number_format($data['intfid']); ?></td>
+                                                <td><?php echo 'Rp.'.number_format($data['inskeh']); ?></td>
+                                                <td><?php echo 'Rp.'.number_format($data['insfile']); ?></td>
                                                 <td align="center">
-                                                    <a class="btn btn-default btn-icon btn-sm" href="index.php?p=edit_jabatan&&id_jabatan=<?php echo $data['id_gaji']; ?>"><i class="fa fa-expand"></i></a>
-                                                    <a class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#deletemodal" onclick="setUID('<?php echo $data['id_gaji'];?>')"><i class="fa fa-times"></i></a>
+                                                    <a class="btn btn-default btn-icon btn-sm" href="index.php?p=edit_jabatan&&id_jabatan=<?php echo $data['id']; ?>"><i class="fa fa-expand"></i></a>
+                                                    <a class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#deletemodal" onclick="setUID('<?php echo $data['id'];?>')"><i class="fa fa-times"></i></a>
                                                     
                                                 </td>
                                             </tr>
