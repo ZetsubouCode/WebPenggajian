@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2020 at 03:54 AM
+-- Generation Time: Oct 05, 2020 at 07:39 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `tb_absensi_mentor` (
 --
 
 INSERT INTO `tb_absensi_mentor` (`id_absen`, `bulan`, `tahun`, `jumlah_anak`, `kehadiran_anak`, `j_kehadirananak`, `j_kunjungan`, `j_pertemuan`, `lesson`, `evaluasi`, `inskeh`, `insfile`, `id_gaji`, `nip`) VALUES
-(1, 'maret', '2020', 6, 1, 5, 4, 4, 3, 123, 321, 333, 2, 1506969),
-(2, 'Januari', '2020', 12, 44, 1, 5, 4, 10, 122, 221, 12, 6, 1504149);
+(1, 'maret', '2020', 6, 1, 1, 4, 4, 3, 1, 0, 333, 2, 1506969),
+(2, 'Januari', '2020', 12, 44, 0, 5, 4, 10, 1, 1, 12, 6, 1504149);
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `tb_pengguna` (
 
 INSERT INTO `tb_pengguna` (`username`, `password`, `level`, `imagefile`, `nip`) VALUES
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', '35tv9w.jpg', '1504142'),
-('budi', '00dfc53ee86af02e742515cdcf075ed3', 'user', '1204217.jpg', '1504149');
+('budiz', '10828e7fe5b957b10363c17f0949b54f', 'user', '1204217.jpg', '1504149');
 
 -- --------------------------------------------------------
 
@@ -139,23 +139,23 @@ INSERT INTO `t_pegawai` (`nip`, `nama_pegawai`, `tgl_lhr`, `tlp`, `alamat`, `id_
 CREATE TABLE IF NOT EXISTS `t_penggajian` (
   `no_penggajian` int(20) NOT NULL AUTO_INCREMENT,
   `tanggal_penggajian` date NOT NULL,
-  `keterangan_gaji` varchar(10) NOT NULL,
   `slip_mentor` int(30) DEFAULT NULL,
   `slip_staff` int(30) DEFAULT NULL,
   PRIMARY KEY (`no_penggajian`),
   KEY `slip_mentor` (`slip_mentor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `t_penggajian`
 --
 
-INSERT INTO `t_penggajian` (`no_penggajian`, `tanggal_penggajian`, `keterangan_gaji`, `slip_mentor`, `slip_staff`) VALUES
-(5, '2020-08-02', '', 0, 1),
-(9, '2020-08-28', '', 0, 2),
-(10, '2020-09-06', '', 0, 3),
-(11, '2020-09-07', '', 1, 0),
-(12, '2020-10-04', '', NULL, 4);
+INSERT INTO `t_penggajian` (`no_penggajian`, `tanggal_penggajian`, `slip_mentor`, `slip_staff`) VALUES
+(5, '2020-08-02', 0, 1),
+(9, '2020-08-28', 0, 2),
+(10, '2020-09-06', 0, 3),
+(11, '2020-09-07', 1, 0),
+(12, '2020-10-04', NULL, 4),
+(16, '2020-10-05', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -217,6 +217,28 @@ INSERT INTO `t_tarif_staff` (`id`, `bulan`, `tahun`, `gereja`, `yci`, `nip`) VAL
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `view_gaji_mentor`
+--
+CREATE TABLE IF NOT EXISTS `view_gaji_mentor` (
+`no_penggajian` int(20)
+,`tanggal` date
+,`bulan` varchar(10)
+,`tahun` varchar(4)
+,`nama_jabatan` varchar(100)
+,`nama_pegawai` varchar(35)
+,`nip` int(30)
+,`gaji` double
+,`bonus` double
+,`kunjungan` bigint(66)
+,`tutorial` bigint(66)
+,`lesson` bigint(66)
+,`evaluasi` bigint(66)
+,`inskeh` bigint(66)
+,`insfile` bigint(66)
+);
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `view_gaji_staff`
 --
 CREATE TABLE IF NOT EXISTS `view_gaji_staff` (
@@ -245,6 +267,15 @@ CREATE TABLE IF NOT EXISTS `view_pengguna` (
 ,`tgl_lhr` date
 ,`tlp` varchar(12)
 );
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_gaji_mentor`
+--
+DROP TABLE IF EXISTS `view_gaji_mentor`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_gaji_mentor` AS select `pg`.`no_penggajian` AS `no_penggajian`,`pg`.`tanggal_penggajian` AS `tanggal`,`am`.`bulan` AS `bulan`,`am`.`tahun` AS `tahun`,`j`.`nama_jabatan` AS `nama_jabatan`,`p`.`nama_pegawai` AS `nama_pegawai`,`am`.`nip` AS `nip`,(`m`.`gaji` * `am`.`jumlah_anak`) AS `gaji`,(`m`.`bonus` * `am`.`j_kehadirananak`) AS `bonus`,(`m`.`kunjungan` * `am`.`j_kunjungan`) AS `kunjungan`,(`m`.`tutorial` * `am`.`j_pertemuan`) AS `tutorial`,(`am`.`lesson` * `m`.`lesson`) AS `lesson`,(`am`.`evaluasi` * `m`.`evaluasi`) AS `evaluasi`,(`am`.`inskeh` * `m`.`inskeh`) AS `inskeh`,(`am`.`insfile` * `m`.`insfile`) AS `insfile` from ((((`t_penggajian` `pg` join `tb_absensi_mentor` `am` on((`pg`.`slip_mentor` = `am`.`id_absen`))) join `t_tarif_mentor` `m` on((`am`.`id_gaji` = `m`.`id`))) join `t_pegawai` `p` on((`am`.`nip` = `p`.`nip`))) join `tb_jabatan` `j` on((`p`.`id_jabatan` = `j`.`kode`))) where (`j`.`kategori_jabatan` like 'Mentor');
+
 -- --------------------------------------------------------
 
 --
