@@ -15,16 +15,16 @@
           include "config/config.php";
           $i=0;
           $id=$_GET['no_penggajian'];
-          $sql="select * from view_gaji_staff where No=$id";
+          $sql="select * from view_gaji_staff where no_penggajian=$id";
           $tampil=mysql_query($sql);
           while($data=mysql_fetch_array($tampil)){
-            $noslip=str_replace('-', '', $data['Tanggal']);
+            $noslip=str_replace('-', '', $data['tanggal_penggajian']);
           $i++;
          ?>
 <div class="invoice">
     <div class="invoice-company">
         <span class="pull-right hidden-print">
-                    <a href="cetak_invoice.php?no_penggajian=<?php echo $data['No']; ?>"class="btn btn-sm btn-success m-b-10"><i class="glyphicon glyphicon-eye-open m-r-5"></i> Lihat & Cetak</a>
+                    <a href="cetak_invoice.php?no_penggajian=<?php echo $data['no_penggajian']; ?>"class="btn btn-sm btn-success m-b-10"><i class="glyphicon glyphicon-eye-open m-r-5"></i> Lihat & Cetak</a>
                     </span>
         PPA AGAPE IO-847 SALATIGA
     </div>
@@ -32,17 +32,17 @@
         <div class="invoice-from">
             <address class="m-t-5 m-b-5">
                 NIP <br />
-                <strong><?php echo $data['NIP']; ?></strong><br />
+                <strong><?php echo $data['nip']; ?></strong><br />
                 Nama <br />
-                <strong><?php echo $data['Nama Pegawai']; ?></strong><br />
+                <strong><?php echo $data['nama_pegawai']; ?></strong><br />
                 
             </address>
         </div>
         <div class="invoice-date">
             <small>No Slip</small>
-            <div class="date m-t-5"><?php echo $noslip.$data['NIP']; ?></div>
+            <div class="date m-t-5"><?php echo $noslip.$data['nip']; ?></div>
             <small>Gaji Periode</small>
-            <div class="date m-t-5"><?php echo date("d-F-Y", strtotime($data['Tanggal'])); ?></div>
+            <div class="date m-t-5"><?php echo date("d-F-Y", strtotime($data['tanggal_penggajian'])); ?></div>
         </div>
     </div>
     <div class="invoice-content">
@@ -63,7 +63,7 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td align="right"><?php echo 'Rp.'.number_format($data['Kontribusi Gereja']); ?></td>
+                        <td align="right"><?php echo 'Rp.'.number_format($data['gereja']); ?></td>
                     </tr>
                     <tr>
                         <td>
@@ -71,7 +71,7 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td align="right"><?php echo 'Rp.'.number_format($data['Kontribusi YCI']); ?></td>
+                        <td align="right"><?php echo 'Rp.'.number_format($data['yci']); ?></td>
                         </td>
                          <tr>
                          
@@ -84,20 +84,20 @@
                     
                      <div class="sub-price">
                         <small>Gaji Dari Gereja</small>
-                        <?php echo 'Rp.'.number_format($data['Kontribusi Gereja']); ?>
+                        <?php echo 'Rp.'.number_format($data['gereja']); ?>
                     </div>
                     <div class="sub-price">
                         <i class="fa fa-plus"></i>
                     </div>
                     <div class="sub-price">
                         <small>Gaji Dari Compassion</small>
-                        <?php echo 'Rp.'.number_format($data['Kontribusi YCI']); ?>
+                        <?php echo 'Rp.'.number_format($data['yci']); ?>
                     </div>
                    
                 </div>
             </div>
             <div class="invoice-price-right">
-                <small>TOTAL</small> <?php echo 'Rp.'.number_format($data['Kontribusi Gereja']+$data['Kontribusi YCI']); ?>
+                <small>TOTAL</small> <?php echo 'Rp.'.number_format($data['gereja']+$data['yci']); ?>
             </div>
         </div>
     </div>

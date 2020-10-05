@@ -163,11 +163,11 @@
                   success:function(data){
                       $("#nama").val(data.nama);
                       $("#tarif_mentoring").val(data.mentoring);
-                      $("#tarif_kehadiran").val(data.kehadiran);
+                      $("#tarif_bonus").val(data.bonus);
                       $("#tarif_kunjungan").val(data.kunjungan);
                       $("#tarif_tutorial").val(data.tutorial);
                       $("#tarif_lesson").val(data.lesson);
-                      $("#evaluasi").val(data.eva);
+                      $("#evaluasi").val(data.evaluasi);
                       $("#inskeh").val(data.inskeh);
                       $("#insfile").val(data.insfile);
                   }

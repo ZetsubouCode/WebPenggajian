@@ -81,9 +81,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4 col-sm-4">Tarif Keehadiran :</label>
+                                    <label class="control-label col-md-4 col-sm-4">Tarif Bonus :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="number" name="tarif_kehadiran" id="tarif_kehadiran" placeholder="Kehadiran" readonly/>
+                                        <input class="form-control" type="number" name="tarif_bonus" id="tarif_bonus" placeholder="<80%" readonly/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                     <label class="control-label col-md-4 col-sm-4"> Tarif Insentif File Data :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="number" name="insfile" id="insfile" placeholder="Insentif File  Data" readonly/>
+                                        <input class="form-control" type="number" name="insfile" id="insfile" placeholder="Insentif File Data" readonly/>
                                     </div>
                                 </div>
 
@@ -178,11 +178,11 @@
                                         ?>
                                             <tr>
                                             <td><?php echo $i; ?></td>
-                                            <td><?php echo date("d-F-Y", strtotime($data['Tanggal'])); ?></td>
+                                            <td><?php echo date("d-F-Y", strtotime($data['tanggal'])); ?></td>
                                             <td><?php echo $data['bulan'].' / '.$data['tahun']; ?></td>
-                                            <td><?php echo $data['NIP']; ?></td>
-                                            <td><?php echo $data['nama']; ?></td>
-                                            <td align="right"><?php echo 'Rp. '.number_format($data['gaji']+$data['Bonus']+$data['kunjungan']+$data['tutorial']+$data['lesson']+$data['evaluasi']+$data['inkeh']+$data['insfile']) ?></td>
+                                            <td><?php echo $data['nip']; ?></td>
+                                            <td><?php echo $data['nama_pegawai']; ?></td>
+                                            <td align="right"><?php echo 'Rp. '.number_format($data['gaji']+$data['bonus']+$data['kunjungan']+$data['tutorial']+$data['lesson']+$data['evaluasi']+$data['inskeh']+$data['insfile']) ?></td>
                                                 <td align="center">
                                                 <a href='index.php?p=cetak_mentor&&no_penggajian=<?php echo $data['no_penggajian']; ?>'class="btn btn-primary btn-icon btn-sm" title='Detail'><i class='glyphicon glyphicon-folder-open'></i></a>
                                                 </td>

@@ -69,8 +69,8 @@
                                     <div class="col-md-6 col-sm-6">
                                     <select name="bonus" data-live-search="true" data-style="btn-white" class="form-control selectpicker" >
                                              <option value="x">---- Pilih ----</option>
-                                             <option value="1">Ya</option>
-                                             <option value="0">Tidak</option>
+                                             <option value="1">Dapat</option>
+                                             <option value="0">Tidak Dapat</option>
                                     </select>
                                     </div>
                                     </div>
@@ -93,15 +93,23 @@
                                       </div>
                                     </div>
                                     <div class="form-group">
-                                    <label class="control-label col-md-4 col-sm-4">Evaluasi Kinerja:</label>
+                                    <label class="control-label col-md-4 col-sm-4">Evaluasi Kinerja :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="number" name="evaluasi" placeholder="Evaluasi Kinerja" value="<?php echo $data['evaluasi'];?>"/>
+                                    <select name="evaluasi" data-live-search="true" data-style="btn-white" class="form-control selectpicker" >
+                                             <option value="x">---- Pilih ----</option>
+                                             <option value="1">Dapat</option>
+                                             <option value="0">Tidak Dapat</option>
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4 col-sm-4">Insentif Kehadiran :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" type="number" name="inskeh" placeholder="Insentif Kehadiran" value="<?php echo $data['inskeh'];?>"/>
+                                    <select name="inskeh" data-live-search="true" data-style="btn-white" class="form-control selectpicker" >
+                                             <option value="x">---- Pilih ----</option>
+                                             <option value="1">Dapat</option>
+                                             <option value="0">Tidak Dapat</option>
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="form-group">

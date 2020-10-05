@@ -43,7 +43,7 @@
           $sql="select * from view_gaji_mentor where no_penggajian=$id";
           $tampil=mysql_query($sql);
           while($data=mysql_fetch_array($tampil)){
-            $noslip=str_replace('-', '', $data['Tanggal']);
+            $noslip=str_replace('-', '', $data['tanggal']);
           $i++;
          ?>
 <div class="invoice">
@@ -75,16 +75,16 @@
         <div class="invoice-from">
             <address class="m-t-5 m-b-5">
                 NIP <br />
-                <strong><?php echo $data['NIP']; ?></strong><br />
+                <strong><?php echo $data['nip']; ?></strong><br />
                 Nama <br />
-                <strong><?php echo $data['nama']; ?></strong><br />
+                <strong><?php echo $data['nama_pegawai']; ?></strong><br />
             </address>
         </div>
         <div class="invoice-date">
             <small>No Slip</small>
-            <div class="date m-t-5"><?php echo $noslip.$data['NIP']; ?></div>
+            <div class="date m-t-5"><?php echo $noslip.$data['nip']; ?></div>
             <small>Tangggal</small>
-            <div class="date m-t-5"><?php echo date("d-F-Y", strtotime($data['Tanggal'])); ?></div>
+            <div class="date m-t-5"><?php echo date("d-F-Y", strtotime($data['tanggal'])); ?></div>
         </div>
     </div>
     <div class="invoice-content">
@@ -114,7 +114,7 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td align="right"><?php echo 'Rp.'.number_format($data['Bonus']); ?></td>
+                        <td align="right"><?php echo 'Rp.'.number_format($data['bonus']); ?></td>
                     </tr>
                     <tr>
                         <td>
@@ -157,7 +157,7 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td align="right"><?php echo 'Rp.'.number_format($data['inkeh']); ?></td>
+                        <td align="right"><?php echo 'Rp.'.number_format($data['inskeh']); ?></td>
                         </td>
                      </tr>
                      <tr>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="sub-price">
                         <small>Gaji Bonus</small>
-                        <?php echo 'Rp.'.number_format($data['Bonus']); ?>
+                        <?php echo 'Rp.'.number_format($data['bonus']); ?>
                     </div>
                     <div class="sub-price">
                         <i class="fa fa-plus"></i>
@@ -222,7 +222,7 @@
                     </div>
                     <div class="sub-price">
                         <small> Intensif Kehadiran</small>
-                        <?php echo 'Rp.'.number_format($data['inkeh']); ?>
+                        <?php echo 'Rp.'.number_format($data['inskeh']); ?>
                     </div>
                     <div class="sub-price">
                         <i class="fa fa-plus"></i>
@@ -237,7 +237,7 @@
             
             <div class="invoice-price-right">
             <?php
-            $total=$data['gaji']+$data['Bonus']+$data['kunjungan']+$data['tutorial']+$data['lesson']+$data['evaluasi']+$data['inkeh']+$data['insfile'];
+            $total=$data['gaji']+$data['bonus']+$data['kunjungan']+$data['tutorial']+$data['lesson']+$data['evaluasi']+$data['inskeh']+$data['insfile'];
             ?>
                 <small>TOTAL</small> <?php echo 'Rp.'.number_format($total); ?>
             </div>

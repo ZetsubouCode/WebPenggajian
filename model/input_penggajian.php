@@ -2,34 +2,22 @@
 
 <?php
 	 include "../config/config.php";
-	 $sql="SELECT *FROM t_penggajian where nip='$_POST[nip]' and bulan='$_POST[bulan]' and tahun='$_POST[tahun]'";
+	 $sql="SELECT *FROM t_penggajian pg join t_tarif_staff s on (pg.slip_staff=s.id) where nip='$_POST[nip]' and bulan='$_POST[bulan]' and tahun='$_POST[tahun]'";
 	 $cek=mysql_num_rows(mysql_query($sql));
+	 $sqlsearch="SELECT id FROM t_tarif_staff s where nip='$_POST[nip]' and bulan='$_POST[bulan]' and tahun='$_POST[tahun]'";
+	 $data=mysql_fetch_assoc(mysql_query($sqlsearch));
 	 if ($cek>0) {
 	 	?>
 	 	<script type="text/javascript">
-	 	alert('Gji pada bulan ini telah di input!');
+	 	alert('Gaji pada bulan ini telah di input!');
 	 	window.location.href="../index.php?p=data_gaji";
 	 	</script>
 	 	<?php
 	 }else{
 		$sql="INSERT INTO `t_penggajian`(
 		`tanggal_penggajian`,
-		`bulan`,
-		`tahun`,
-		`nip`,
-		`gaji_pokok`,
-		`tunjangan_jabatan`,
-		`gaji_kunjungan`,
-		`gaji_tutorial`,
-		`gaji_lesson`,
-		`gaji_evaluasi`,
-		`gaji_inskeh`,
-		`gaji_insfile`,
-		`gaji_kontribusi`,
-		`gaji_yci`,
-		`bonus`,
-		`potongan`)
-		VALUES (CURDATE(),'$_POST[bulan]','$_POST[tahun]','$_POST[nip]','$_POST[gaji_pokok]','$_POST[tunjangan_jabatan]','$_POST[gaji_kunjungan]','$_POST[gaji_tutorial]','$_POST[gaji_lesson]','$_POST[gaji_evaluasi]','$_POST[gaji_inskeh]','$_POST[gaji_insfile]','$_POST[gaji_kontribusi]','$_POST[gaji_yci]','$_POST[bonus]','$_POST[potongan]')";
+		`slip_staff`)
+		VALUES (CURDATE(),'$data[id]')";
 		mysql_query($sql) or die("Gagal Menyimpan");
 		header ("location:../index.php?p=data_gaji");
 	 	

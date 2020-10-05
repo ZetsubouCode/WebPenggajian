@@ -164,7 +164,7 @@
                                             <td><?php echo $data['nama_pegawai']; ?></td>
                                             <td align="right"><?php echo 'Rp. '.number_format($data['gereja']+$data['yci']) ?></td>
                                             <td>
-                                               <a href='index.php?p=cetak&&no_penggajian=<?php echo $data['No']; ?>'class="btn btn-primary btn-icon btn-sm" title='Detail'><i class='glyphicon glyphicon-folder-open'></i></a>
+                                               <a href='index.php?p=cetak&&no_penggajian=<?php echo $data['no_penggajian']; ?>'class="btn btn-primary btn-icon btn-sm" title='Detail'><i class='glyphicon glyphicon-folder-open'></i></a>
                                             </td>
                                           </tr>
                                           <?php
