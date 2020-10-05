@@ -48,25 +48,32 @@
 						imagefile='".$_FILES['imagefile']['name']."' WHERE username = '".$_POST['username2']."'";
 					}else{
 						$sql = "UPDATE tb_pengguna SET
-						username = '".$_POST['username']."',
-						password = '".md5($_POST['password'])."',
-						level = '".$_POST['level']."',
+						`username` = '".$_POST['username']."',
+						`password` = '".md5($_POST['password'])."',
+						`level` = '".$_POST['level']."',
 						imagefile='".$_FILES['imagefile']['name']."' WHERE username = '".$_POST['username2']."'";
 					}
 					mysql_query($sql) or die("Gagal Memperbaharui");
 					header ("location:../index.php?p=data_pengguna");
 					
 				}elseif ($_POST['password']=='') {
-						$sql = "UPDATE tb_pengguna SET
-						username = '".$_POST['username']."',
-						level = '".$_POST['level']."' WHERE username = '".$_POST['username2']."'";
+					
+						$sql = "UPDATE tb_pengguna SET `username` = '".$_POST['username']."', `level` = '".$_POST['level']."' WHERE `username` = '".$_POST['username2']."'";
+					
 					}else{
 						$sql = "UPDATE tb_pengguna SET
-						username = '".$_POST['username']."',
-						password = '".md5($_POST['password'])."',
-						level = '".$_POST['level']."' WHERE username = '".$_POST['username2']."'";
+						`username` = '".$_POST['username']."',
+						`password` = '".md5($_POST['password'])."',
+						`level` = '".$_POST['level']."' WHERE username = '".$_POST['username2']."'";
 					}
-					mysql_query($sql) or die("Gagal Memperbaharui");
+					
+					if(mysql_query($sql)){
+						session_start();
+						$_SESSION[username]=$_POST['username'];
+					}else{
+					die("Gagal Memperbaharui");
+					}
+					
 					header ("location:../index.php?p=data_user");
 		
 

@@ -49,7 +49,7 @@
                             <div id="passwordStrengthDiv" class="is0 m-t-5"></div>
                         </div>
                     </div>
-                    <input type="text" style="display:none" name="level" value="<?php echo $_SESSION[level];?>"/>
+                    <input type="text" style="display:none" name="level" value="<?php echo $_SESSION['level'];?>"/>
                     <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4" for="fullname">Nama Lengkap :</label>
                         <div class="col-md-6 col-sm-6">
