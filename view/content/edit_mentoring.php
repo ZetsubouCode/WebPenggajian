@@ -27,7 +27,8 @@
                         <div class="panel-body panel-form">
                    <?php 
                       include "config/config.php";
-                      $sql="select * from t_pk where id='$_GET[id]'";
+                      $sql="SELECT nama_jabatan,bulan,tahun,id_absen,jumlah_anak,kehadiran_anak,j_kehadirananak,j_kunjungan,j_pertemuan,pk.lesson,pk.evaluasi,pk.insfile,pk.inskeh 
+                      from tb_absensi_mentor pk join t_tarif_mentor m on (pk.id_gaji=m.id) join tb_jabatan j on (j.kode=m.id_jabatan) where id_absen='$_GET[id]'";
                       $tampil=mysql_query($sql);
                       while($data=mysql_fetch_array($tampil)){
                      ?>
@@ -35,10 +36,22 @@
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4" >Nama Jabatan :</label>
 									<div class="col-md-6 col-sm-6">
-                                     <input type="hidden" name="id_gaji_lama" value="<?php echo $data['id'];?>">
-										<input class="form-control" type="text" name="id_gaji" value="<?php echo $data['id_gaji'];?>" readonly />
+                                     <input type="hidden" name="id_gaji_lama" value="<?php echo $data['id_absen'];?>">
+										<input class="form-control" type="text" name="id_gaji" value="<?php echo $data['nama_jabatan'];?>" readonly />
 									</div>
 								</div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4"> Bulan :</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="text" name="bulan" value="<?php echo $data['bulan'];?>" readonly/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4"> Tahun :</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="text" name="tahun" value="<?php echo $data['tahun'];?>" readonly/>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4 col-sm-4"> Jumlah Anak :</label>
                                     <div class="col-md-6 col-sm-6">
@@ -79,7 +92,24 @@
                                         <input class="form-control" type="number" name="lesson" value="<?php echo $data['lesson'];?>" />
                                       </div>
                                     </div>
-                                    
+                                    <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Evaluasi Kinerja:</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="number" name="evaluasi" placeholder="Evaluasi Kinerja" value="<?php echo $data['evaluasi'];?>"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Insentif Kehadiran :</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="number" name="inskeh" placeholder="Insentif Kehadiran" value="<?php echo $data['inskeh'];?>"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4 col-sm-4">Insentif File Data :</label>:</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="number" name="insfile" placeholder="Insentif File Data" value="<?php echo $data['insfile'];?>"/>
+                                    </div>
+                                </div>
 									<label class="control-label col-md-4 col-sm-4"></label>
 									<div class="col-md-6 col-sm-6">
 										<button type="submit" class="btn btn-primary btn-sm">Update</button> 

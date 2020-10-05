@@ -30,14 +30,14 @@
                                 <div class="form-group">
 									<label class="control-label col-md-4 col-sm-4">Pos Pelayanan :</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select name="id_gaji" data-live-search="true" data-style="btn-white" class="form-control selectpicker" >
+                                        <select name="jabatan" data-live-search="true" data-style="btn-white" class="form-control selectpicker" >
                                              <option value="1">---- Pilih Pos Pelayanan ----</option>
                                              <?php
                                             include "config/config.php";
                                              $sql = mysql_query("SELECT * FROM tb_jabatan where kategori_jabatan='Mentor' ORDER BY nama_jabatan ASC");
                                              if(mysql_num_rows($sql) != 0){
                                                  while($data = mysql_fetch_assoc($sql)){
-                                                     echo '<option value='.$data['nama_jabatan'].'>'.$data['nama_jabatan'].'</option>';
+                                                     echo '<option value='.$data['kode'].'>'.$data['nama_jabatan'].'</option>';
                                                  }
                                              }
                                              ?>

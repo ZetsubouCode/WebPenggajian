@@ -2,7 +2,7 @@
 error_log("script was called, processing request...");
 include "../config/config.php";
 $id=$_POST['uid'];
-$sql="DELETE FROM `t_pk` WHERE `id` ='$id'";
+$sql="DELETE FROM `tb_absensi_mentor` WHERE `id_absen` ='$id'";
 if(mysql_query($sql)){
 	$data['say'] = "ok";
 }else{

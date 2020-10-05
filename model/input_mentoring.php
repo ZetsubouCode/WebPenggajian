@@ -1,28 +1,39 @@
 <?php
 	 include "../config/config.php";
-	 $dataJson=json_decode($_POST['kode_jabatan']);
+
+	$data=mysql_query("SELECT * from t_tarif_mentor where id_jabatan='$_POST[jabatan]'");
+	$result=mysql_fetch_assoc($data);
+	$sql="INSERT INTO `tb_absensi_mentor`(
 	
-	
-	$sql="INSERT INTO `t_pk`(
-	
-	`kode_jabatan`,
+	`bulan`,
+	`tahun`,
 	`jumlah_anak`,
 	`kehadiran_anak`,
 	`j_kehadirananak`,
 	`j_kunjungan`,
 	`j_pertemuan`,
 	`lesson`,
-	`id_gaji`
+	 `evaluasi`,
+	 `inskeh`,
+	 `insfile`,
+	`id_gaji`,
+	`nip`
 	)
 	VALUES (
-			'$dataJson->id',
+			'$_POST[bulan]',
+			'$_POST[tahun]',
 			'$_POST[anak]',
 			'$_POST[kehadiran]',
 			'$_POST[bonus]',
 			'$_POST[kunjungan]',
 			'$_POST[pertemuan]',
 			'$_POST[lesson]',
-			'$dataJson->nama')";
+			'$_POST[evaluasi]',
+			'$_POST[inskeh]',
+			'$_POST[insfile]',
+			'$result[id]',
+			'$_POST[nip]')";
+		
 	mysql_query($sql) or die("Gagal Menyimpan");
 	header ("location:../index.php?p=data_mentoring");
 ?>
